@@ -91,4 +91,4 @@ while (false !== $entry = $dir->read()) {
 chmodr('www/');
 
 
-echo 'Instalação do WinPHP realizada com sucesso! <a target="_blank" href="www/">Abrir winPHP</a>';
+echo 'Instalação do WinPHP (versão Completa) realizada com sucesso! <a target="_blank" href="www/">Abrir versão Completa</a>';

@@ -12,7 +12,7 @@ use Win\Authentication\UserDAO;
 use Win\Mvc\Controller;
 use Win\Mvc\View;
 use Win\Request\Input;
-use Win\Widget\Captcha;
+use Win\Widget\ReCaptcha;
 
 class LoginController extends Controller {
 
@@ -126,8 +126,8 @@ class LoginController extends Controller {
 	private function sendRecoveryEmail(User $user) {
 		$user->setEmail(Input::post('email'));
 
-		if (!Captcha::isValid()) {
-			$error = 'Preencha os caracteres de segurança corretamente.';
+		if (!ReCaptcha::isValid()) {
+			$error = 'Marque a opção Não sou um robô.';
 		} else {
 			$error = RecoveryPassword::sendEmail(Input::post('email'));
 		}
@@ -141,7 +141,9 @@ class LoginController extends Controller {
 		$this->preventLogged();
 		$this->setTitle('Alterar Senha | ' . $this->app->getName());
 		$recoveryHash = $this->app->getParam(2);
-
+		var_dump($recoveryHash);
+		die();
+		
 		$uDAO = new UserDAO();
 		$user = $uDAO->fetchByRecoveryHash($recoveryHash);
 		$this->validateRecoveryHash($user);

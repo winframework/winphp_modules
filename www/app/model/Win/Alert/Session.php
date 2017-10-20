@@ -45,4 +45,18 @@ class Session {
 		return !count(static::getAlerts());
 	}
 
+	/**
+	 * Cria um alerta de erro ou sucesso, depedendo dos parametros
+	 * Usado para simplificar o uso de "AlertError" e "AlertSuccess"
+	 * @param string $error
+	 * @param string $success
+	 */
+	public static function alert($error, $success) {
+		if (!is_null($error)) {
+			new AlertError($error);
+		} else {
+			new AlertSuccess($success);
+		}
+	}
+
 }

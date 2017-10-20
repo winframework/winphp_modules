@@ -3,6 +3,7 @@
 namespace Win\Mvc;
 
 use Win\Helper\Template;
+use Win\Html\Seo\Title;
 
 /**
  * Views
@@ -72,6 +73,9 @@ class View {
 	}
 
 	public function getTitle() {
+		if (empty($this->getData('title'))){
+			$this->addData('title', Title::otimize(ucfirst(str_replace('-', ' ', $this->app->getPage()))));
+		}
 		return $this->getData('title');
 	}
 

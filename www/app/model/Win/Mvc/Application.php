@@ -4,6 +4,7 @@ namespace Win\Mvc;
 
 use Win\Authentication\User;
 use Win\Helper\Url;
+use Win\Html\Seo\Title;
 
 /**
  * Application (WinPHP Framework)
@@ -236,7 +237,7 @@ class Application {
 			$this->view = new View($errorCode);
 
 			$this->controller = ControllerFactory::create('Error' . $errorCode);
-			$this->view->addData('title', $this->errorPageList[$errorCode]);
+			$this->view->addData('title', Title::otimize($this->errorPageList[$errorCode]));
 			http_response_code($errorCode);
 			$this->controller->reload();
 		endif;
